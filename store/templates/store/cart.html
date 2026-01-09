@@ -1,0 +1,39 @@
+{% extends 'store/base.html' %}
+{% block content %}
+
+
+<h1>Your Cart</h1>
+
+
+
+{% if products %}
+  {% for product in products %}
+    <p>
+      {{ product.name }} |
+      Qty: {{ product.quantity }} |
+      Price: ₹{{ product.price }} |
+      Subtotal: ₹{{ product.subtotal }}
+    </p>
+  {% endfor %}
+
+  <h3>Total: ₹{{ total }}</h3>
+{% else %}
+  <p>Your cart is empty.</p>
+{% endif %}
+
+<hr>
+
+<a href="{% url 'checkout' %}">
+    <button style="padding:10px 20px; font-size:16px;">
+        Proceed to Checkout
+    </button>
+</a>
+{% endblock %}
+
+
+
+
+
+
+
+
