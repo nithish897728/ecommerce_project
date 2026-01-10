@@ -144,15 +144,16 @@ STATIC_ROOT = BASE_DIR / "staticfiles"  # or os.path.join(BASE_DIR, 'staticfiles
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
-import cloudinary
+import os
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dnkfdnc77',
-    'API_KEY': '476797859784732',
-    'API_SECRET': '17PlUK5qWNx5VZoPkUJ4LlgamL0',
+    'CLOUD_NAME': os.environ.get('dnkfdnc77'),
+    'API_KEY': os.environ.get('476797859784732'),
+    'API_SECRET': os.environ.get('17PlUK5qWNx5VZoPkUJ4LlgamL0'),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 
 
