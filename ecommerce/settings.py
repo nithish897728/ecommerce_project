@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qzgl=@e$9m!$4!2oze(b*25t691-e_=woe*^abw!u9*@h#)30k'
+SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-dev-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    
     'store',
+
+
     'cloudinary',
-    'cloudinary_storage',
+    'django_cloudinary_storage',
+
 
 ]
 
@@ -144,15 +149,19 @@ STATIC_ROOT = BASE_DIR / "staticfiles"  # or os.path.join(BASE_DIR, 'staticfiles
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
+import cloudinary
 import os
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('dnkfdnc77'),
-    'API_KEY': os.environ.get('476797859784732'),
-    'API_SECRET': os.environ.get('17PlUK5qWNx5VZoPkUJ4LlgamL0'),
-}
+cloudinary.config(
+    cloud_name = os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key = os.environ.get("CLOUDINARY_API_KEY"),
+    api_secret = os.environ.get("CLOUDINARY_API_SECRET"),
+    secure = True
+)
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+
 
 
 
