@@ -1,10 +1,11 @@
 from django.db import models       # <-- THIS LINE IS REQUIRED
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.IntegerField()
-    image = models.ImageField(upload_to='product/', blank=True, null=True)
+    image = CloudinaryField('image', blank=True, null=True)
 
 
     def __str__(self):
