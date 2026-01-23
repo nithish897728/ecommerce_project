@@ -1,4 +1,5 @@
 {% extends 'store/base.html' %}
+{% load static %}
 {% block content %}
 <!DOCTYPE html>
 <html>
@@ -71,6 +72,8 @@
             <p>₹{{ product.price }}</p>
             <a href="{% url 'add' product.id %}">Add to Cart</a>
         </div>
+    {% empty %}
+        <p>No products available.</p>
 
         
 
